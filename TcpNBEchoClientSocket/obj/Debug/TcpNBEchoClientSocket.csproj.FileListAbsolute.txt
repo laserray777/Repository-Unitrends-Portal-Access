@@ -1,0 +1,8 @@
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\bin\Debug\TcpNBEchoClientSocket.exe.config
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\bin\Debug\TcpNBEchoClientSocket.exe
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\bin\Debug\TcpNBEchoClientSocket.pdb
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\obj\Debug\TcpNBEchoClientSocket.csproj.AssemblyReference.cache
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\obj\Debug\TcpNBEchoClientSocket.csproj.CoreCompileInputs.cache
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\obj\Debug\TcpNBEchoClientSocket.exe
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\obj\Debug\TcpNBEchoClientSocket.pdb
+C:\Users\RaymondGregowicz\source\repos\TcpNBEchoClientSocketSol m,m\TcpNBEchoClientSocket\obj\Debug\TcpNBEchoClientSocket.csproj.SuggestedBindingRedirects.cache

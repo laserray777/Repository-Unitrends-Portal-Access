@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d418fe79-e226-4af2-903d-6ead014d449b": {
+      "ProjectGuid": "d418fe79-e226-4af2-903d-6ead014d449b",
+      "DisplayName": "TcpNBEchoClientSocket",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

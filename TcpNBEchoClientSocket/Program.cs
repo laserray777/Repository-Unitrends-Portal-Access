@@ -54,24 +54,31 @@ namespace TcpNBEchoClientSocket
             // convert input string to a packet of bytes.
             byte[] sendPacket = Encoding.ASCII.GetBytes(args[1]);
             byte[] rcvPacket = new byte[100];
-            Dns.GetHostEntry(server);
-            IPEndPoint remoteIPEndPoint = new IPEndPoint(Dns.GetHostEntry(server).AddressList[0], servPort);
 
-            EndPoint remoteEndPoint = (EndPoint)remoteIPEndPoint;
+            IPHostEntry ipHostInfo = Dns.GetHostEntry("na3-ltr-las-4c260959fb4d-msp.unitrendscloud.com");
+
+            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            long long_IPAddress = 1081923537;
+            IPEndPoint remoteIPEndPoint = new IPEndPoint(ipAddress, servPort);
+         
+            
+            //   IPEndPoint remoteIPEndPoint = new IPEndPoint(Dns.GetHostEntry(server).AddressList[0], servPort);
+
+           
 
             int tries = 0; // Packets may be lost, so we have to keep trying
             Boolean receivedResponse = false;
             do
             {
-                sockUdp.SendTo(sendPacket, remoteEndPoint); // Send the echo string
+                sockUdp.SendTo(sendPacket, remoteIPEndPoint); // Send the echo string
 
 
                 Console.WriteLine("Sent {0} bytes to the server...", sendPacket.Length);
 
                 try
                 {
-                    // Attempt echo reply receive.
-                    sockUdp.ReceiveFrom(rcvPacket, ref remoteEndPoint);
+                    //  Attempt echo reply receive.
+                //    sockUdp.ReceiveFrom(rcvPacket, ref (EndPoint)remoteIPEndPoint);
 
                     receivedResponse = true;
                 }
@@ -88,7 +95,7 @@ namespace TcpNBEchoClientSocket
 
                 if (receivedResponse)
                     Console.WriteLine("Received {0} bytes from {1}: {2}",
-                                       rcvPacket.Length, remoteEndPoint,
+                                       rcvPacket.Length, remoteIPEndPoint,
                                        Encoding.ASCII.GetString(rcvPacket, 0, rcvPacket.Length));
                 else
                     Console.WriteLine("No response -- giving up");
