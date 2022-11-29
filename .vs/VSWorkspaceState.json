@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    "\\TcpNBEchoClientSocket"
+    "",
+    "\\TcpNBEchoClientSocket",
+    "\\TcpNBEchoClientSocket\\bin",
+    "\\TcpNBEchoClientSocket\\bin\\Debug"
   ],
+  "SelectedNode": "\\TcpNBEchoClientSocket\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

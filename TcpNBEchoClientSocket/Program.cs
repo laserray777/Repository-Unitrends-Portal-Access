@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;    // For IPEndpoint, Dns
 using System.Net.Sockets;  // For TcpClient, NetworkStream, SocketException
 using System.Threading;
+using System.Runtime.CompilerServices;
 
 namespace TcpNBEchoClientSocket
 {
@@ -27,13 +28,16 @@ namespace TcpNBEchoClientSocket
             // Use port argument if supplied, otherwise default to 7.
             int servPort = (args.Length == 3) ? Int32.Parse(args[2]) : 7;
 
+            /* experimental section*/
+            IPAddress parsedIPAddress = IPAddress.Parse("64.124.176.192");
+
             // Create Socket and connect
             Socket sockUdp = null;
             try
             {
                 Console.WriteLine("Try to create sockUdp and bidnd it to Unitrends las-ltr portal endpoint.");
                 sockUdp = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                sockUdp.Bind(new IPEndPoint(IPAddress.Any, servPort));
+             //   sockUdp.Bind(new IPEndPoint(IPAddress.Any, servPort));
 
                 // Set Socket Options
                 // set the receive timeout for this socket.
@@ -53,13 +57,13 @@ namespace TcpNBEchoClientSocket
 
             // convert input string to a packet of bytes.
             byte[] sendPacket = Encoding.ASCII.GetBytes(args[1]);
-            byte[] rcvPacket = new byte[100];
+            byte[] rcvPacket = new byte[300];
 
             IPHostEntry ipHostInfo = Dns.GetHostEntry("na3-ltr-las-4c260959fb4d-msp.unitrendscloud.com");
 
             IPAddress ipAddress = ipHostInfo.AddressList[0];
-            long long_IPAddress = 1081923537;
             IPEndPoint remoteIPEndPoint = new IPEndPoint(ipAddress, servPort);
+            EndPoint remoteEndPoint = (EndPoint)remoteIPEndPoint; 
          
             
             //   IPEndPoint remoteIPEndPoint = new IPEndPoint(Dns.GetHostEntry(server).AddressList[0], servPort);
@@ -70,15 +74,16 @@ namespace TcpNBEchoClientSocket
             Boolean receivedResponse = false;
             do
             {
-                sockUdp.SendTo(sendPacket, remoteIPEndPoint); // Send the echo string
+                sockUdp.SendTo(sendPacket,   remoteEndPoint); // Send the echo string
 
 
                 Console.WriteLine("Sent {0} bytes to the server...", sendPacket.Length);
 
                 try
                 {
-                    //  Attempt echo reply receive.
-                //    sockUdp.ReceiveFrom(rcvPacket, ref (EndPoint)remoteIPEndPoint);
+                  
+                    //  Attempt echo reply received.
+                  sockUdp.ReceiveFrom(rcvPacket,ref  remoteEndPoint);
 
                     receivedResponse = true;
                 }
@@ -93,15 +98,17 @@ namespace TcpNBEchoClientSocket
 
                 }
 
-                if (receivedResponse)
-                    Console.WriteLine("Received {0} bytes from {1}: {2}",
-                                       rcvPacket.Length, remoteIPEndPoint,
-                                       Encoding.ASCII.GetString(rcvPacket, 0, rcvPacket.Length));
-                else
-                    Console.WriteLine("No response -- giving up");
-                Console.ReadKey();
+              
 
             } while ((!receivedResponse) && (tries < MAXTRIES));
+
+            if (receivedResponse)
+                Console.WriteLine("Received {0} bytes from {1}: {2}",
+                                   rcvPacket.Length, remoteIPEndPoint,
+                                   Encoding.ASCII.GetString(rcvPacket, 0, rcvPacket.Length));
+            else
+                Console.WriteLine("No response -- giving up");
+            Console.ReadKey();
         }
      }
 }
